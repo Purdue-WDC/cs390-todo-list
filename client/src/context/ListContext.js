@@ -106,6 +106,13 @@ export const ListContextProvider = (props) => {
         
     }
 
+    // Clear current selection
+    const clearCurrent = () => {
+        dispatch({
+            type: CLEAR_CURRENT
+        })
+    }
+
     // Update item
     const updateItem = async (id, content) => {
         try {
@@ -155,13 +162,6 @@ export const ListContextProvider = (props) => {
         dispatch({
             type: SET_CURRENT,
             payload: item
-        })
-    }
-
-    // Clear current selection
-    const clearCurrent = () => {
-        dispatch({
-            type: CLEAR_CURRENT
         })
     }
 

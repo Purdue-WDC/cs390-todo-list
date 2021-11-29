@@ -44,6 +44,24 @@ const AuthReducer = (state, action) => {
 export const AuthContextProvider = (props) => {
 	const [state, dispatch] = useReducer(AuthReducer, initialState);
 
+	// Get logged in user
+	const getUser = async (token) => {
+		try {
+			const res = await axios.get("/api/auth/", {
+				headers: {
+					Authorization: token,
+				},
+			});
+
+			dispatch({
+				type: AUTHENTICATED,
+				payload: res.data.user,
+			});
+		} catch (err) {
+			throw new Error('Something went wrong');
+		}
+	};
+
 	useEffect(() => {
 		if (state.token) {
 			try {
@@ -94,24 +112,6 @@ export const AuthContextProvider = (props) => {
 			await getUser(token);
 		} catch (err) {
 			throw new Error("Something went wrong");
-		}
-	};
-
-	// Get logged in user
-	const getUser = async (token) => {
-		try {
-			const res = await axios.get("/api/auth/", {
-				headers: {
-					Authorization: token,
-				},
-			});
-
-			dispatch({
-				type: AUTHENTICATED,
-				payload: res.data.user,
-			});
-		} catch (err) {
-			throw new Error('Something went wrong');
 		}
 	};
 
