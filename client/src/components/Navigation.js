@@ -25,7 +25,7 @@ const Navigation = (props) => {
 							<button className="btn btn-ligt" onClick={handleLogout}>Logout</button>
 						</li>
 					) : (
-						<>
+						<React.Fragment>
 							<li className="nav-item">
 								<NavLink className="nav-link" exact to="/login">
 									Login
@@ -36,7 +36,7 @@ const Navigation = (props) => {
 									Register
 								</NavLink>
 							</li>
-						</>
+						</React.Fragment>
 					)}
 				</ul>
 			</nav>
